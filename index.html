@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>THE SACRED NOTES . Private Journal App with a Daily Bible Verse</title>
+  <meta name="author" content="Wexorg Group">
+  <meta name="description" content="A private journal web app: one public-domain Bible verse a day and a blank page for your own notes, with tags, search, streaks, reminders, PIN lock and export. $9 one-time payment.">
+
+  <!-- OpenGraph Exclusivo -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://suporteoficialsac.store/">
+  <meta property="og:title" content="THE SACRED NOTES . Private Journal App with a Daily Bible Verse">
+  <meta property="og:description" content="A private journal web app: one public-domain Bible verse a day and a blank page for your own notes, with tags, search, streaks, reminders, PIN lock and export. $9 one-time payment.">
+  <meta property="og:image" content="https://suporteoficialsac.store/assets/og-sacred-notes.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="THE SACRED NOTES . Private Journal App with a Daily Bible Verse">
+  <meta name="twitter:description" content="A private journal web app: one public-domain Bible verse a day and a blank page for your own notes, with tags, search, streaks, reminders, PIN lock and export. $9 one-time payment.">
+  <meta name="twitter:image" content="https://suporteoficialsac.store/assets/og-sacred-notes.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/white.css">
+</head>
+<body>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container">
+      <header class="site-header">
+        <a href="/" class="brand-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+          <span>THE SACRED NOTES</span>
+        </a>
+
+        <div class="header-actions">
+          <select id="landing-lang-select" aria-label="Language" class="lang-select">
+            <option value="en" selected>English</option>
+            <option value="es">Espanol</option>
+            <option value="fr">Francais</option>
+          </select>
+          <a href="/app/" class="btn-header-app">Open Web App</a>
+        </div>
+      </header>
+
+      <div class="hero-grid">
+        <div>
+          <span class="pill-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+            <span>Private journal app . Daily Bible verse</span>
+          </span>
+
+          <h1 class="hero-title">
+            Write your prayers and notes in
+            <span class="hero-title-accent">THE SACRED NOTES</span>
+          </h1>
+
+          <p class="hero-lead">
+            A private journal for your phone or computer. Each day shows one Bible verse from a public-domain translation and a blank page for your own words, with tags, mood tracking, favorites, a monthly calendar, personal stats, reminders, PIN lock and backup.
+          </p>
+
+          <div class="hero-cta-row">
+            <a href="/checkout/" class="btn-primary">
+              <span>Get access . $9 one-time</span>
+            </a>
+            <a href="#demo" class="btn-secondary">
+              <span>Try the app before you buy</span>
+            </a>
+          </div>
+
+          <p class="hero-microcopy">
+            One payment . No subscription . Access link sent by email after payment
+          </p>
+        </div>
+
+        <!-- Interactive Phone Preview (#demo) -->
+        <div id="demo" class="phone-preview-shell">
+          <div class="phone-status-bar">
+            <span>THE SACRED NOTES</span>
+            <span>Interactive Demo</span>
+          </div>
+
+          <div class="verse-card-demo">
+            <p id="demo-verse-text" class="verse-quote">
+              "This is the day which the LORD hath made; we will rejoice and be glad in it."
+            </p>
+            <p id="demo-verse-ref" class="verse-ref">Psalm 118:24 . KJV</p>
+          </div>
+
+          <div class="demo-input-area">
+            <textarea
+              id="demo-note-input"
+              class="demo-textarea"
+              placeholder="What do you want to write down today? Write a reflection, prayer, or gratitude note..."
+            ></textarea>
+
+            <div class="demo-tag-row">
+              <button type="button" class="demo-tag-chip active" data-demo-tag="gratitude">#gratitude</button>
+              <button type="button" class="demo-tag-chip" data-demo-tag="family">#family</button>
+              <button type="button" class="demo-tag-chip" data-demo-tag="prayer">#prayer</button>
+              <button type="button" class="demo-tag-chip" data-demo-tag="study">#study</button>
+            </div>
+
+            <button type="button" id="demo-save-btn" class="demo-save-btn">
+              Save entry to demo journal
+            </button>
+          </div>
+
+          <div id="demo-saved-list" class="demo-saved-list">
+            <div class="demo-saved-item">
+              <div class="demo-saved-meta">Sample Entry . #gratitude</div>
+              <div>Grateful for quiet morning reading and clarity for the week ahead.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 Core Screens Section -->
+  <section class="section-block">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Inside the Web App</p>
+        <h2 class="section-title">Everything you need for quiet daily reflection</h2>
+        <p class="section-desc">
+          Designed for simplicity, speed, and privacy across phone, tablet, and desktop browsers.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <!-- Feature 1 -->
+        <article class="feature-card">
+          <div class="feature-icon-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+            </svg>
+          </div>
+          <p class="feature-meta">Daily Verse . Verse . Reference . Notes</p>
+          <h3>One Bible verse a day, nothing added</h3>
+          <p>
+            The Today screen shows a single verse, text and reference only, from a public-domain translation: King James Version in English, Louis Segond 1910 in French, and Reina-Valera 1909 in Spanish. There is no commentary and no interpretation: what you think about it is yours to write.
+          </p>
+          <ul class="feature-bullets">
+            <li><span class="bullet-dot"></span><span>Text and reference only</span></li>
+            <li><span class="bullet-dot"></span><span>Public-domain translations (KJV, LSG 1910, RV 1909)</span></li>
+            <li><span class="bullet-dot"></span><span>Shown in the language you choose</span></li>
+            <li><span class="bullet-dot"></span><span>A blank space right below for your notes</span></li>
+          </ul>
+        </article>
+
+        <!-- Feature 2 -->
+        <article class="feature-card">
+          <div class="feature-icon-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 20h9"></path>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+            </svg>
+          </div>
+          <p class="feature-meta">Your Journal . Write . Tag . Save</p>
+          <h3>A blank page and a simple question</h3>
+          <p>
+            Below the verse there is one simple question, "What do you want to write down today?", and a blank page. Write a prayer, a note, an intention, or a list of things you are grateful for. What you write is always up to you.
+          </p>
+          <ul class="feature-bullets">
+            <li><span class="bullet-dot"></span><span>As many entries per day as you want</span></li>
+            <li><span class="bullet-dot"></span><span>Tags you create yourself (family, gratitude, work)</span></li>
+            <li><span class="bullet-dot"></span><span>Optional reflection mood for each entry</span></li>
+            <li><span class="bullet-dot"></span><span>Edit or delete any entry later</span></li>
+          </ul>
+        </article>
+
+        <!-- Feature 3 -->
+        <article class="feature-card">
+          <div class="feature-icon-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <p class="feature-meta">History &amp; Journey . Search . Calendar . Stats</p>
+          <h3>Find anything you wrote and see your journey</h3>
+          <p>
+            Every entry goes to your History, as a list or on a monthly calendar. Search for a word, filter by tag, date, or favorites. The Journey screen shows your streak, best streak, words written, and a 12-week activity grid.
+          </p>
+          <ul class="feature-bullets">
+            <li><span class="bullet-dot"></span><span>Full-text search, filters, and favorites</span></li>
+            <li><span class="bullet-dot"></span><span>Monthly calendar of the days you wrote</span></li>
+            <li><span class="bullet-dot"></span><span>Streaks, activity grid, and reflection summary</span></li>
+            <li><span class="bullet-dot"></span><span>Export everything as a .txt file</span></li>
+          </ul>
+        </article>
+
+        <!-- Feature 4 -->
+        <article class="feature-card">
+          <div class="feature-icon-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <p class="feature-meta">Settings &amp; Support . PIN . Backup . Help</p>
+          <h3>Private and under your control</h3>
+          <p>
+            Protect the journal with a 4-digit PIN, choose a light or dark theme or larger text, and export a backup file that keeps a copy of every entry. Dedicated customer support is built right inside the app.
+          </p>
+          <ul class="feature-bullets">
+            <li><span class="bullet-dot"></span><span>4-digit PIN lock for local privacy</span></li>
+            <li><span class="bullet-dot"></span><span>Backup and restore with one file</span></li>
+            <li><span class="bullet-dot"></span><span>Light and dark theme, adjustable font size</span></li>
+            <li><span class="bullet-dot"></span><span>Built-in customer support tab inside the app</span></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- What You Receive & What The App Is Not -->
+  <section class="section-block">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Clear Deliverable</p>
+        <h2 class="section-title">What you receive</h2>
+        <p class="section-desc">A digital product: instant access to a web app. Nothing physical is shipped.</p>
+      </div>
+
+      <div class="receive-grid">
+        <div class="receive-card">
+          <h4>A web app</h4>
+          <p>Opens directly in the browser on phone, tablet, or computer. No app store download needed.</p>
+        </div>
+        <div class="receive-card">
+          <h4>Five screens</h4>
+          <p>Today (verse + journal), History (search, calendar), Journey (your stats), Settings (PIN, backup), and Support.</p>
+        </div>
+        <div class="receive-card">
+          <h4>Access by email</h4>
+          <p>Right after payment is confirmed, an access link is sent to the email address you used at checkout.</p>
+        </div>
+        <div class="receive-card">
+          <h4>Lifetime access</h4>
+          <p>One payment of $9. No subscription and no recurring charges. App updates are included.</p>
+        </div>
+      </div>
+
+      <div class="compliance-notice-box">
+        <h3>What the app is not</h3>
+        <p>
+          THE SACRED NOTES is a personal journaling and scripture reading tool. It does not provide guided prayers, devotionals, spiritual counselling, or financial advice, and it does not replace medical or psychological care. The only text it displays that you did not write yourself is Bible text from public-domain translations.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 Steps From Payment to First Entry -->
+  <section class="section-block">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">How It Works</p>
+        <h2 class="section-title">From payment to your first entry</h2>
+      </div>
+
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h4>Pay once</h4>
+          <p>Complete a secure one-time payment of $9 at checkout.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h4>Get your link</h4>
+          <p>An access link is sent to your email right after the payment is confirmed.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h4>Set it up</h4>
+          <p>Open the link in your browser and choose your language, theme, and optional 4-digit PIN.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <h4>Write</h4>
+          <p>Open Today, read the daily verse, and write your entry. It goes straight to your private History.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section-block">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">FAQ</p>
+        <h2 class="section-title">Questions &amp; Answers</h2>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item" open>
+          <summary>Is this a subscription?</summary>
+          <p>No. THE SACRED NOTES is a one-time purchase of $9 USD. There are no recurring fees or hidden charges.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What exactly do I get?</summary>
+          <p>You receive lifetime access to THE SACRED NOTES web application, including the daily public-domain Bible verse reader, unlimited private journal entries, tags, calendar history, personal writing statistics, 4-digit PIN protection, and text export.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How and when do I receive access?</summary>
+          <p>Immediately after your payment is confirmed, you receive an automated email containing your direct access link to the web app, and you are also redirected straight to the application.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Does the app include guided prayers or devotionals?</summary>
+          <p>No. The app displays only one public-domain Bible verse per day without commentary, giving you a clean, distraction-free space for your own personal notes.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Which Bible translations are used?</summary>
+          <p>We use public-domain translations: King James Version (KJV) in English, Reina-Valera 1909 in Spanish, and Louis Segond 1910 in French.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Which devices does it work on?</summary>
+          <p>It works in any modern web browser on iPhone, Android, iPad, Mac, and Windows computers without needing an app store installation.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Is my journal private?</summary>
+          <p>Yes. Your notes are stored locally on your device browser and can be locked with a 4-digit PIN code or exported as a backup file at any time.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What if it is not for me?</summary>
+          <p>Every purchase is covered by our 30-day money-back guarantee. Simply email wexorggroup@gmail.com within 30 days of purchase for a full refund.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="section-block">
+    <div class="container">
+      <div class="pricing-card">
+        <p class="section-eyebrow">One payment . Lifetime access</p>
+        <div class="pricing-amount">$9</div>
+        <p class="pricing-sub">one-time payment . no subscription . USD</p>
+
+        <ul class="pricing-checklist">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>30-day money-back guarantee</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Full access to the web app (Today, History, Journey, Settings, Support)</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Daily verse from a public-domain translation (EN / ES / FR)</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Unlimited entries, tags, reflection moods, favorites, and search</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Monthly calendar and personal writing statistics</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>4-digit PIN lock, backup, and restore</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Instant access link sent by email after payment</span>
+          </li>
+        </ul>
+
+        <a href="/checkout/" class="btn-pricing">Get access . $9 one-time</a>
+        <p class="pricing-sub" style="margin-top: 12px;">Secure checkout . No recurring charges</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer (Exact Lucas Reference Format) -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-brand">THE SACRED NOTES</div>
+      <p class="footer-tagline">A private journal web app with a daily public-domain Bible verse.</p>
+
+      <nav class="footer-links" aria-label="Legal and Support Links">
+        <a href="/privacy-policy/">Privacy Policy</a>
+        <span class="footer-dot">&middot;</span>
+        <a href="/terms-of-service/">Terms of Service</a>
+        <span class="footer-dot">&middot;</span>
+        <a href="/refund-policy/">Refund Policy</a>
+        <span class="footer-dot">&middot;</span>
+        <a href="/contact/">Contact</a>
+      </nav>
+
+      <div class="footer-company-block">
+        <div>Wexorg Group (60.808.685 Gustavo Augusto Martins de Araujo)</div>
+        <div>CNPJ 60.808.685/0001-29 &middot; Brazil</div>
+        <div class="footer-contact-line">
+          <a href="mailto:wexorggroup@gmail.com">wexorggroup@gmail.com</a> &middot; +55 31 97359-3318
+        </div>
+      </div>
+
+      <p class="footer-copy">&copy; 2026 Wexorg Group. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="/scripts/landing-demo.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Journal App . THE SACRED NOTES</title>
+  <meta name="author" content="Wexorg Group">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="THE SACRED NOTES web app: daily public-domain Bible verse, private reflection journal, history, calendar, streaks, PIN lock, and customer support.">
+
+  <!-- OpenGraph Exclusivo -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://suporteoficialsac.store/app/">
+  <meta property="og:title" content="Journal Web App . THE SACRED NOTES">
+  <meta property="og:description" content="Private daily scripture journal web application with tags, search, calendar, streaks, PIN lock, and built-in customer support.">
+  <meta property="og:image" content="https://suporteoficialsac.store/assets/og-sacred-notes.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/white.css">
+  <style>
+    body.app-body {
+      background-color: #0F3231;
+      color: #F5EDE0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 20px 14px 96px 14px;
+    }
+    .app-shell {
+      width: 100%;
+      max-width: 560px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .app-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+    }
+    .app-brand-name {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #E8A87C;
+      text-transform: uppercase;
+    }
+    .app-brand-sub {
+      font-size: 11px;
+      color: #B9CECC;
+      font-weight: 600;
+    }
+    .app-status-pill {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: rgba(201, 123, 74, 0.22);
+      color: #E8A87C;
+      border: 1px solid rgba(232, 168, 124, 0.35);
+    }
+    .app-nav {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 6px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .app-nav-btn {
+      background: transparent;
+      border: none;
+      color: #C5D7D5;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 10px 6px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .app-nav-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+    .app-nav-btn.active {
+      background: #C97B4A;
+      color: #FFFFFF;
+    }
+    .app-card {
+      background: #F5EDE0;
+      color: #1F2A28;
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+    }
+    .app-card-eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #C97B4A;
+      margin-bottom: 8px;
+    }
+    .app-card h2 {
+      font-size: 21px;
+      font-weight: 800;
+      color: #1B4B4A;
+      margin-bottom: 10px;
+    }
+    .app-verse-box {
+      background: #FFFAF2;
+      border: 1px solid rgba(27, 75, 74, 0.16);
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+    .app-verse-text {
+      font-size: 17px;
+      font-weight: 700;
+      color: #1B4B4A;
+      line-height: 1.5;
+    }
+    .app-verse-ref {
+      margin-top: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #C97B4A;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .app-prompt-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .app-prompt-text {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1B4B4A;
+    }
+    .app-link-btn {
+      background: transparent;
+      border: none;
+      color: #C97B4A;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .app-textarea {
+      width: 100%;
+      min-height: 130px;
+      border-radius: 14px;
+      border: 1px solid rgba(27, 75, 74, 0.22);
+      background: #FFFAF2;
+      padding: 14px;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 14px;
+      color: #1F2A28;
+      resize: vertical;
+      margin-bottom: 12px;
+    }
+    .app-field-input {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(27, 75, 74, 0.22);
+      background: #FFFAF2;
+      padding: 11px 14px;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 13px;
+      color: #1F2A28;
+      margin-bottom: 12px;
+    }
+    .app-mood-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .app-mood-btn {
+      border: 1px solid rgba(27, 75, 74, 0.2);
+      background: #FFFAF2;
+      color: #1B4B4A;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .app-mood-btn.active {
+      background: #1B4B4A;
+      color: #FFFFFF;
+    }
+    .app-primary-btn {
+      width: 100%;
+      background: #1B4B4A;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 14px;
+      padding: 14px 20px;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .app-secondary-btn {
+      background: #EBE0CC;
+      color: #1B4B4A;
+      border: 1px solid rgba(27, 75, 74, 0.2);
+      border-radius: 12px;
+      padding: 9px 14px;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .app-secondary-btn.active {
+      background: #C97B4A;
+      color: #FFFFFF;
+    }
+    .app-entry-card {
+      background: #FFFAF2;
+      border: 1px solid rgba(27, 75, 74, 0.15);
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 12px;
+    }
+    .app-entry-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 700;
+      color: #C97B4A;
+      margin-bottom: 6px;
+    }
+    .app-entry-body {
+      font-size: 14px;
+      color: #1F2A28;
+      margin-bottom: 8px;
+    }
+    .app-entry-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .app-tag-pill {
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(27, 75, 74, 0.09);
+      color: #1B4B4A;
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .stat-box {
+      background: #FFFAF2;
+      border: 1px solid rgba(27, 75, 74, 0.15);
+      border-radius: 14px;
+      padding: 14px;
+      text-align: center;
+    }
+    .stat-val {
+      font-size: 22px;
+      font-weight: 800;
+      color: #1B4B4A;
+    }
+    .stat-lbl {
+      font-size: 11px;
+      font-weight: 700;
+      color: #52615E;
+      text-transform: uppercase;
+    }
+    .support-detail-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .support-detail-list li {
+      background: #FFFAF2;
+      border: 1px solid rgba(27, 75, 74, 0.15);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 13px;
+    }
+    .support-detail-list strong {
+      color: #1B4B4A;
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+  </style>
+</head>
+<body class="app-body">
+
+  <div class="app-shell">
+    <!-- Top Header -->
+    <header class="app-topbar">
+      <div>
+        <div class="app-brand-name">THE SACRED NOTES</div>
+        <div class="app-brand-sub">Private Scripture &amp; Reflection Journal</div>
+      </div>
+      <span class="app-status-pill">Lifetime Access Active</span>
+    </header>
+
+    <!-- 5-Tab Navigation Bar -->
+    <nav class="app-nav" aria-label="App Navigation">
+      <button type="button" class="app-nav-btn active" data-tab="today">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+        <span>Today</span>
+      </button>
+      <button type="button" class="app-nav-btn" data-tab="history">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <span>History</span>
+      </button>
+      <button type="button" class="app-nav-btn" data-tab="journey">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+        <span>Journey</span>
+      </button>
+      <button type="button" class="app-nav-btn" data-tab="settings">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        <span>Settings</span>
+      </button>
+      <button type="button" class="app-nav-btn" data-tab="support">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <span>Support</span>
+      </button>
+    </nav>
+
+    <!-- Panel 1: TODAY -->
+    <section class="app-card" data-panel="today">
+      <div class="app-card-eyebrow">Today's Public-Domain Scripture</div>
+      <h2>Daily Verse &amp; Private Reflection</h2>
+
+      <div class="app-verse-box">
+        <p class="app-verse-text">
+          "This is the day which the LORD hath made; we will rejoice and be glad in it."
+        </p>
+        <p class="app-verse-ref">Psalm 118:24 . King James Version (KJV)</p>
+      </div>
+
+      <div class="app-prompt-bar">
+        <span id="app-prompt-label" class="app-prompt-text">What do you want to write down today?</span>
+        <button type="button" id="app-next-prompt" class="app-link-btn">Another idea</button>
+      </div>
+
+      <textarea
+        id="app-note-textarea"
+        class="app-textarea"
+        placeholder="Write your personal notes, prayer reflections, or daily gratitude here..."
+      ></textarea>
+
+      <input
+        type="text"
+        id="app-tags-input"
+        class="app-field-input"
+        placeholder="Tags (comma separated: gratitude, family, study)"
+        value="gratitude, morning"
+      >
+
+      <div class="app-mood-row">
+        <button type="button" class="app-mood-btn active" data-mood="Grateful">Grateful</button>
+        <button type="button" class="app-mood-btn" data-mood="Peaceful">Peaceful</button>
+        <button type="button" class="app-mood-btn" data-mood="Hopeful">Hopeful</button>
+        <button type="button" class="app-mood-btn" data-mood="Focused">Focused</button>
+      </div>
+
+      <button type="button" id="app-save-entry-btn" class="app-primary-btn">Save Entry to Journal</button>
+      <p id="app-save-feedback" style="margin-top: 8px; font-size: 12px; font-weight: 700; color: #1B4B4A;"></p>
+    </section>
+
+    <!-- Panel 2: HISTORY -->
+    <section class="app-card" data-panel="history" hidden>
+      <div class="app-card-eyebrow">Search &amp; Archive</div>
+      <h2>Your Journal History</h2>
+
+      <input
+        type="search"
+        id="app-search-input"
+        class="app-field-input"
+        placeholder="Search by keyword, verse reference, or #tag..."
+      >
+
+      <div style="display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px;">
+        <button type="button" id="app-fav-filter-btn" class="app-secondary-btn">Filter Favorites Only</button>
+        <button type="button" id="app-export-txt-btn" class="app-secondary-btn">Export All (.txt)</button>
+      </div>
+
+      <div id="app-history-list"></div>
+    </section>
+
+    <!-- Panel 3: JOURNEY -->
+    <section class="app-card" data-panel="journey" hidden>
+      <div class="app-card-eyebrow">Personal Writing Consistency</div>
+      <h2>Your Reflection Journey</h2>
+
+      <div class="stats-row">
+        <div class="stat-box">
+          <div id="stat-current-streak" class="stat-val">3 days</div>
+          <div class="stat-lbl">Current Streak</div>
+        </div>
+        <div class="stat-box">
+          <div id="stat-total-entries" class="stat-val">3</div>
+          <div class="stat-lbl">Total Entries</div>
+        </div>
+        <div class="stat-box">
+          <div id="stat-total-words" class="stat-val">82</div>
+          <div class="stat-lbl">Words Written</div>
+        </div>
+      </div>
+
+      <div class="app-verse-box">
+        <div class="app-card-eyebrow">Most Used Reflection Tags</div>
+        <div class="app-entry-tags" style="margin-top: 8px;">
+          <span class="app-tag-pill">#gratitude (12)</span>
+          <span class="app-tag-pill">#morning (9)</span>
+          <span class="app-tag-pill">#family (7)</span>
+          <span class="app-tag-pill">#wisdom (6)</span>
+          <span class="app-tag-pill">#peace (5)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Panel 4: SETTINGS -->
+    <section class="app-card" data-panel="settings" hidden>
+      <div class="app-card-eyebrow">Preferences &amp; Privacy</div>
+      <h2>App Settings</h2>
+
+      <ul class="support-detail-list">
+        <li>
+          <strong>Bible Translation Language</strong>
+          English (King James Version . Public Domain)
+        </li>
+        <li>
+          <strong>4-Digit Privacy PIN Lock</strong>
+          Unlocked on this trusted browser . Tap to configure local PIN code
+        </li>
+        <li>
+          <strong>Local Backup &amp; Export</strong>
+          All journal entries are stored locally in your browser and can be exported at any time in plain text (.txt) format.
+        </li>
+      </ul>
+    </section>
+
+    <!-- Panel 5: SUPPORT (Required by Page 8 of Whop Business Verification PDF) -->
+    <section class="app-card" data-panel="support" hidden>
+      <div class="app-card-eyebrow">In-Product Customer Assistance</div>
+      <h2>Customer Support &amp; Help Center</h2>
+      <p style="font-size: 14px; color: #52615E;">
+        Need help with your access link, device transfer, billing questions, or our 30-day money-back guarantee? Contact our support team directly below.
+      </p>
+
+      <ul class="support-detail-list">
+        <li>
+          <strong>Official Support Email</strong>
+          <a href="mailto:wexorggroup@gmail.com" style="color: #1B4B4A; font-weight: 700;">wexorggroup@gmail.com</a>
+        </li>
+        <li>
+          <strong>Support Phone / WhatsApp</strong>
+          <span>+55 31 97359-3318</span>
+        </li>
+        <li>
+          <strong>Support Operating Hours</strong>
+          <span>Monday to Friday, 09:00 to 18:00 (GMT-3)</span>
+        </li>
+        <li>
+          <strong>Average Response Time</strong>
+          <span>Under 24 hours (typically within 4 business hours)</span>
+        </li>
+        <li>
+          <strong>Company &amp; Billing Entity</strong>
+          <span>Wexorg Group (60.808.685 Gustavo Augusto Martins de Araujo) &middot; CNPJ 60.808.685/0001-29</span>
+        </li>
+      </ul>
+
+      <a href="mailto:wexorggroup@gmail.com?subject=Support%20Request%20-%20THE%20SACRED%20NOTES" class="app-primary-btn" style="display: block; text-align: center;">
+        Send Email to Customer Support
+      </a>
+    </section>
+  </div>
+
+  <script type="module" src="/scripts/journal-app.js"></script>
+</body>
+</html>
+
